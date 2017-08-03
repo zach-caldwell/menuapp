@@ -39,7 +39,7 @@ items = [{'name': 'Cheese Pizza',
 item = {'name': 'Cheese Pizza', 'description': 'made with fresh cheese',
         'price': '$5.99', 'course': 'Entree'}
 
-# Allows you to use '%' in templates as opposed to {%...%}
+# Allows you to use '%' for statements in templates as opposed to {%...%}
 with app.app_context():
     current_app.jinja_env.line_statement_prefix = '%'
 
