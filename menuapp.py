@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, current_app
 app = Flask(__name__)
 
 
@@ -38,6 +38,10 @@ items = [{'name': 'Cheese Pizza',
           'id': '5'}]
 item = {'name': 'Cheese Pizza', 'description': 'made with fresh cheese',
         'price': '$5.99', 'course': 'Entree'}
+
+# Allows you to use '%' in templates as opposed to {%...%}
+with app.app_context():
+    current_app.jinja_env.line_statement_prefix = '%'
 
 
 @app.route('/')
