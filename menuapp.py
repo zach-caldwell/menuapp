@@ -63,7 +63,11 @@ def showMenu(restaurant_id):
 
 @app.route('/restaurant/<int:restaurant_id>/edit/')
 def editRestaurant(restaurant_id):
-    return "This page will be for editing restaurant %s" % restaurant_id
+    for restaurant in restaurants:
+        if restaurant['id'] == str(restaurant_id):
+            return render_template('editRestaurant.html',
+                                   name=restaurant['name'])
+    return "Sorry, we couldn't find your restaurant :("
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete/')
