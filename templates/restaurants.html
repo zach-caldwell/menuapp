@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Menu App</title>
-</head>
-<body>
-	<a href="#">Create New Restaurant</a>
-	</br>
-	</br>
-	% for restaurant in restaurants
+% extends "base.html"
+
+% block content
+<a href="#">Create New Restaurant</a>
+</br>
+</br>
+% for restaurant in restaurants
 	<div>
 	<h2>{{restaurant.name}}</h2>
 	<a href="#">View Menu</a>
@@ -15,6 +12,5 @@
 	<a href="#">Edit Restaurant</a>
 	</div>
 	</br>
-	% endfor
-</body>
-</html>
+% endfor
+% endblock
