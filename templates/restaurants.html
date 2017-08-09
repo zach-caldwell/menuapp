@@ -15,5 +15,7 @@
 		</br>
 	% endfor
 % endif
-<p>There are currently no restaurants to display</p>
+% if not restaurants
+	<p>There are currently no restaurants to display</p>
+% endif
 % endblock
