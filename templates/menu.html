@@ -3,14 +3,20 @@
 <a href="#" class="uk-button uk-button-default">Add Item to Menu</a>
 </br>
 </br>
-% for item in items 
-	<h2>{{item.name}}</h2>
-	<a href="#">Edit Menu Item</a>
-	<a href="#">Delete Menu Item</a>
-	<p>Course: {{item.course}}</p>
-	<p>Price: {{item.price}}</p>
-	<p>Description: {{item.description}}</p>
-	</br>
-	</br>
-% endfor
+% if items
+	% for item in items 
+		<h2>{{item.name}}</h2>
+		<a href="#">Edit Menu Item</a>
+		<a href="#">Delete Menu Item</a>
+		<p>Course: {{item.course}}</p>
+		<p>Price: {{item.price}}</p>
+		<p>Description: {{item.description}}</p>
+		</br>
+		</br>
+	% endfor
+% endif
+% if not items
+	<p>There are currently no menu items to display</p>
+% endif
+<a href="#">Add a menu item</a>
 % endblock
