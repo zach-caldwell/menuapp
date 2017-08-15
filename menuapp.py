@@ -1,4 +1,4 @@
-from flask import Flask, render_template, current_app, url_for, request
+from flask import Flask, render_template, current_app, url_for, request, flash
 from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -30,6 +30,7 @@ def newRestaurant():
         newRestaurant = Restaurant(name = request.form['newRestaurantName'])
         session.add(newRestaurant)
         session.commit()
+        flash('New Restaurant Created!')
     return render_template('newRestaurant.html')
 
 
