@@ -39,7 +39,7 @@ def newRestaurant():
 @app.route('/restaurant/<int:restaurant_id>/menu')
 def showMenu(restaurant_id):
     items = session.query(MenuItem).filter_by(restaurant_id = restaurant_id)
-    return render_template('menu.html', items=items)
+    return render_template('menu.html', items=items, restaurant_id = restaurant_id)
 
 
 @app.route('/restaurant/<int:restaurant_id>/edit/')
