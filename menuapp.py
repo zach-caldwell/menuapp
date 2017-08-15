@@ -20,6 +20,7 @@ with app.app_context():
 @app.route('/')
 @app.route('/restaurants/')
 def showRestaurants():
+    restaurants = session.query(Restaurant)
     return render_template('restaurants.html', restaurants=restaurants)
 
 
