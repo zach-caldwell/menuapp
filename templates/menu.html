@@ -1,6 +1,6 @@
 % extends "base.html"
 % block content 
-<a href="#" class="uk-button uk-button-default">Add Item to Menu</a>
+<a href="{{ url_for('newMenuItem', restaurant_id = restaurant_id) }}" class="uk-button uk-button-default">Add Item to Menu</a>
 </br>
 </br>
 % if items
