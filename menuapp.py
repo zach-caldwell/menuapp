@@ -31,6 +31,7 @@ def newRestaurant():
         session.add(newRestaurant)
         session.commit()
         flash('New Restaurant Created!')
+        return redirect(url_for('showRestaurants'))
     return render_template('newRestaurant.html')
 
 
