@@ -24,8 +24,12 @@ def showRestaurants():
     return render_template('restaurants.html', restaurants=restaurants)
 
 
-@app.route('/restaurant/new/')
+@app.route('/restaurant/new/' methods = ['GET', 'POST'])
 def newRestaurant():
+    if request.method == 'POST':
+        newRestaurant = Restaurant(name = request.form['newRestaurantName'])
+        session.add(newRestaurant)
+        session.commit()
     return render_template('newRestaurant.html')
 
 
