@@ -1,4 +1,4 @@
-from flask import Flask, render_template, current_app, url_for, request, flash
+from flask import Flask, render_template, current_app, url_for, request, flash, redirect
 from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -24,7 +24,7 @@ def showRestaurants():
     return render_template('restaurants.html', restaurants=restaurants)
 
 
-@app.route('/restaurant/new/' methods = ['GET', 'POST'])
+@app.route('/restaurant/new/', methods = ['GET', 'POST'])
 def newRestaurant():
     if request.method == 'POST':
         newRestaurant = Restaurant(name = request.form['newRestaurantName'])
@@ -75,5 +75,6 @@ def deleteMenuItem(restaurant_id, menu_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
