@@ -42,13 +42,18 @@ def showMenu(restaurant_id):
     return render_template('menu.html', items=items, restaurant_id = restaurant_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/edit/')
+@app.route('/restaurant/<int:restaurant_id>/edit/', methods = ['GET', 'POST'])
 def editRestaurant(restaurant_id):
-    for restaurant in restaurants:
-        if restaurant['id'] == str(restaurant_id):
-            return render_template('editRestaurant.html',
-                                   name=restaurant['name'])
-    return "Sorry, we couldn't find your restaurant :("
+    restaurants = session.query(Restaurant)
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    if request.method == 'POST':
+        if request.form['editedRestaurantName']:
+            restaurant.name = request.form['editedRestaurantName']
+            session.add(restaurant)
+            session.commit()
+            flash('Restaurant Name Changed!')
+        return redirect(url_for('showRestaurants'))
+    return render_template('editRestaurant.html', restaurant = restaurant, restaurant_id = restaurant_id)
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete/')
