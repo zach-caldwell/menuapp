@@ -18,10 +18,10 @@
 % if restaurants
 	% for restaurant in restaurants
 		<div>
-		<h2>{{restaurant.name}}</h2>
-		<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}">View Menu</a>
-		<a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">Delete Restaurant</a>
-		<a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">Edit Restaurant</a>
+			<h2>{{restaurant.name}}</h2>
+			<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}">View Menu</a>
+			<a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">Delete Restaurant</a>
+			<a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">Edit Restaurant</a>
 		</div>
 		</br>
 	% endfor
