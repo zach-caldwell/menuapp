@@ -4,17 +4,29 @@
 <a href="{{ url_for('newRestaurant') }}">Create New Restaurant</a>
 </br>
 </br>
+% with messages = get_flashed_messages()
+% if messages
+        % for message in messages
+        	<div class="uk-alert uk-alert-success" data-uk-alert>
+				<a href="" class="uk-alert-close uk-close"></a>
+		        <p>{{ message }}</p>
+		    </div>
+	    % endfor
+% endif
+% endwith
+
 % if restaurants
 	% for restaurant in restaurants
 		<div>
 		<h2>{{restaurant.name}}</h2>
 		<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}">View Menu</a>
 		<a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">Delete Restaurant</a>
-		<a href="{{ url_for('editRestaurant' restaurant_id = restaurant.id) }}">Edit Restaurant</a>
+		<a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">Edit Restaurant</a>
 		</div>
 		</br>
 	% endfor
 % endif
+
 % if not restaurants
 	<p>There are currently no restaurants to display</p>
 % endif
