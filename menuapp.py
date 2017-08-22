@@ -79,12 +79,25 @@ def newMenuItem(restaurant_id):
     return render_template('newMenuItem.html', restaurant_id = restaurant_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit/')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit/', methods = ['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
+    item = session.query(MenuItem).filter_by(id = menu_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            item.name = request.form['name']
+        if request.form['course']:
+            item.course = request.form['course']
+        if request.form['price']:
+            item.price = request.form['price']
+        if request.form['description']:
+            item.description = request.form['description']
+        session.add(item)
+        session.commit()
+        return redirect(url_for('showMenu', restaurant_id = restaurant_id))
     return render_template('editMenuItem.html',
-                           restaurant_id=restaurant_id,
-                           menu_id=menu_id,
-                           item=item)
+                           restaurant_id = restaurant_id,
+                           menu_id = menu_id,
+                           item = item)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete/')
