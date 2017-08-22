@@ -1,9 +1,9 @@
 % extends "base.html"
 
 % block content
-<form>
-	<h2>Are you sure you want to delete Menu Item {{menu_id}}?</h2>
+<form action="{{ url_for('deleteMenuItem', restaurant_id = restaurant_id, menu_id = menu_id) }}" method="POST">
+	<h2>Are you sure you want to delete Menu Item {{item.name}}?</h2>
 	<input type="submit" value="Yes">
-	<input type="submit" value="No">
 </form>
+<a href="{{ url_for('showMenu', restaurant_id = restaurant_id) }}">Cancel</a>
 % endblock
